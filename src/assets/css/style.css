@@ -1,0 +1,116 @@
+/* css */
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+
+:root {
+
+  /* Colors */
+  --primary-bg-color: #fffaf5;
+  --secondary: #FFEDDB;
+  --btn-main-color: #102f32;
+  --main-txt-color: #000000;
+  --box-sh: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  --border-color: rgba(255, 255, 255, 0.25);
+  --hover-color: rgba(20, 27, 27, 0.151);
+
+  /* Typography */
+
+  --f-family: 'Open Sans', sans-serif;
+  --txt-f-size: 1rem;
+  --small-txt-f-size: 0.75rem;
+  --title-f-size: 1.5rem;
+  --btn-close-size: 2.5rem;
+  --small-mobile-txt-f-size: 0.6rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+
+body {
+  margin: 0;
+  font-family: var(--f-family);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-bg-color);
+}
+
+/* Tags */
+h1, h2, h3 {
+  color: var(--main-txt-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-txt-color);
+}
+input, select { border: 1px solid #ccc; padding: 8px; }
+
+
+/* Layout */
+
+header {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pages {
+  height: 100vh;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  color: var(--btn-main-color);
+  font-size: var(--title-f-size);
+  font-weight: 700;
+
+}
+
+/* Components */
+
+.main-header {
+  font-size: var(--title-f-size);
+  color: var(--main-txt-color);
+}
+
+.main-title {
+  font-size: var(--title-f-size);
+  color: var(--main-txt-color);
+}
+
+.navbar{
+  background: var(--secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.nav-ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}

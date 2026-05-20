@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator przepisów lasagne</title>
+</head>
+<body>
+  <header>
+    <h1>Kalkulator przepisów lasagne</h1>
+  </header>
+  <main>
+    <form id="lasagne-form">
+      <div>
+        <label for="layers">Liczba warstw</label>
+        <input type="number" id="layers" min="1" value="1">
+      </div>
+      <div>
+        <label for="total-time">Całkowity czas pieczenia (min)</label>
+        <input type="number" id="total-time" value="20" disabled>
+      </div>
+      <div>
+        <label for="elapsed-time">Ile minut już się piecze?</label>
+        <input type="number" id="elapsed-time" min="0" value="0">
+      </div>
+      <button type="button" id="calculate-btn">Oblicz przepis</button>
+    </form>
+    <div id="result-display">
+      <p>Czas pozostały: <span id="remaining-time">--</span> min</p>
+    </div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
