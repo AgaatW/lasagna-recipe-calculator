@@ -114,3 +114,13 @@ header {
   display: flex;
   gap: 1rem;
 }
+
+/* error, ready */
+
+.is-error {
+  color: red;
+}
+
+.is-ready {
+  color: green;
+}
