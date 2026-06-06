@@ -1,22 +1,21 @@
 // calculator.js
 
-// Zamiast stałej BASE_BAKE_TIME, funkcja przyjmuje bazowy czas jako drugi parametr!
 export const calculateTotalTime = (layers, currentBaseTime) => {
     const BAKE_TIME_PER_LAYER = 10;
     return currentBaseTime + (layers * BAKE_TIME_PER_LAYER);
 };
 
-export const calculateRemainingTime = (total, elapsed) => {
-    const remaining = total - elapsed;
-    return Math.max(0, remaining); // Świetne użycie Math.max!
-};
-
-export const validateBakingData = (layers, elapsed) => {
+export const validateBakingData = (layers, elapsed, trayDepth) => {
     const errors = [];
-    
-    if (layers <= 0 || layers > 5) {
-        errors.push("Maksymalna liczba warstw to 5.");
+    const LAYER_THICKNESS = 1.2; 
+
+    const maxLayers = Math.floor(trayDepth / LAYER_THICKNESS);
+
+
+    if (layers <= 0 || layers > maxLayers) {
+        errors.push(`Dla tej blachy maksymalna liczba warstw to ${maxLayers}.`);
     }
+    
     if (elapsed < 0) {
         errors.push("Czas pieczenia nie może być ujemny.");
     }
@@ -37,4 +36,9 @@ export const getBaseTimeByType = (type) => {
         default:
             return 10; 
     }
+};
+
+export const calculateRemainingTime = (total, elapsed) => {
+    const remaining = total - elapsed;
+    return Math.max(0, remaining);
 };
