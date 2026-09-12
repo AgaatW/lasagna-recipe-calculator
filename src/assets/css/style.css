@@ -1,126 +1,376 @@
 /* css */
 
-@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Staatliches&display=swap');
 
-:root {
-
-  /* Colors */
-  --primary-bg-color: #fffaf5;
-  --secondary: #FFEDDB;
-  --btn-main-color: #102f32;
-  --main-txt-color: #000000;
-  --box-sh: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  --border-color: rgba(255, 255, 255, 0.25);
-  --hover-color: rgba(20, 27, 27, 0.151);
-
-  /* Typography */
-
-  --f-family: 'Open Sans', sans-serif;
-  --txt-f-size: 1rem;
-  --small-txt-f-size: 0.75rem;
-  --title-f-size: 1.5rem;
-  --btn-close-size: 2.5rem;
-  --small-mobile-txt-f-size: 0.6rem;
-}
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body */
+
+:root {
+
+  /* Colors */
+  
+  --primary-bg-color: #C1272D;
+  --secondary-bg-color: #F7E4E5;
+  --button-bg-color: #C1272D;
+  --button-txt-color: #C1272D;
+  --main-txt-color: #F7E4E5;
+  --form-box-sh: 8px 8px 0px #000000;
+  --border-color: #000000;
+  --calc-cont-box-sh: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+  --title-primary-color: #FFC737;
+  --title-button-color: #FFC737;
+  --hover-color: #000000;
+  --button-hover-color: #000000;
+  --f-hover: #000000;
+
+  /* Typography */
+
+  --f-family: 'DM Sans', sans-serif;
+  --f-headline-button: 'Comic+Neue', sans-serif; 
+  --txt-f-size: 1rem;
+  --medium-txt-f-size: 1.5rem;
+  --small-txt-f-size: 0.75rem;
+  --title-f-size: 3.5rem;
+  --small-mobile-txt-f-size: 0.6rem;
+}
+
+/* Global */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+select,
+button {
+  font-family: var(--f-family);
+  color: var(--button-txt-color);
+}
 
 body {
+  line-height: 1.5;
+  background: var(--primary-bg-color);
+    line-height: 1.5;
   margin: 0;
-  font-family: var(--f-family);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--primary-bg-color);
+    background-image: url('../img/lasagne-bacground-dots-01.svg');
+  background-repeat: repeat;
+
+
 }
 
-/* Tags */
-h1, h2, h3 {
-  color: var(--main-txt-color);
+.title-section {
+  color: var(--title-primary-color);
+  font-family: var(--f-headline-btn);
+  font-weight: 700;
+  font-size: var(--title-f-size);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     4px  4px 0px #000;
+
 }
 
-a {
-  text-decoration: none;
-  color: var(--main-txt-color);
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom:35px; 
 }
-input, select { border: 1px solid #ccc; padding: 8px; }
+
+/* Główne style dla pól w formularzu */
+.form-group input,
+.form-group select {
+  font-size: var(--txt-f-size);
+  color: var(--main-txt-color);
+  border: none; /* Usuwa wszystkie czarne krawędzie (w tym prawą!) */
+  border-bottom: 2px solid #ffffff; /* Domyślna biała linia pod spodem */
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+/* Przycisk otwierający menu */
+.select-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.select-trigger:hover,
+.select-trigger:focus {
+  border-bottom-color: var(--hover-color); /* Żółty akcent */
+  outline: none;
+}
+
+/* Rozwijana lista opcji */
+.select-options {
+  display: none; /* Domyślnie ukryta */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000; /* Twardy cień komiksowy */
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  z-index: 10;
+}
+
+/* Domyślnie lista opcji jest ukryta */
+.custom-select .custom-options {
+  display: none; /* lub opacity: 0 / visibility: hidden */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 10;
+}
+
+/* KIEDY PARENT MA KLASĘ .open - POKAŻ LISTĘ */
+.custom-select.open .custom-options {
+  display: block; /* LUB opacity: 1 / visibility: visible */
+}
+
+/* ZAMIAST SYSTEMOWEGO NIEBIESKIEGO -> Twój autorski żółty akcent! */
+.select-options .option:hover,
+.select-options .option.selected {
+  background-color: #f6c435;
+  color: #000000;
+  font-weight: bold;
+}
+
+label {
+font-weight: 700;
+font-size: var(--medium-txt-f-size);
+background: transparent;
+color: var(--main-txt-color);
+}
+
+select option {
+  background-color: var(--button-bg-color);
+  color: #ffffff;
+  padding: 10px;
+}
+
+select {
+  color-scheme: dark;
+}
 
 
 /* Layout */
 
-header {
+/* header {
   width: 100%;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+
+.calculator-container {
+ max-width: 1200px;
+  width: 90%;
+padding: 20px 40px;
+  margin: 10px ;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas:
+    "box-header box-header"
+    "box-svg    box-form"
+    "box-footer box-footer";
+  gap: 40px;
+  align-items: center;
+background-color: var(--button-bg-color); 
+  border-radius: 8px;
+  border: 4px solid var(--border-color);
+  box-shadow: var(--form-box-sh);
+  
 }
 
-.main-content {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#box-header {
+  grid-area: box-header;
 }
 
-.navbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#box-svg {
+  grid-area: box-svg;
 }
-.pages {
-  height: 100vh;
-  display: flex;
-  justify-content:  center;
-  align-items: center;
-  color: var(--btn-main-color);
-  font-size: var(--title-f-size);
-  font-weight: 700;
 
+#box-form {
+  grid-area: box-form;
+  gap: 20px;
+}
+
+#box-footer {
+  grid-area: box-footer;
 }
 
 /* Components */
 
-.main-header {
-  font-size: var(--title-f-size);
-  color: var(--main-txt-color);
+.title-section{
+  font-size: var(--medium-txt-f-size);
 }
 
-.main-title {
-  font-size: var(--title-f-size);
-  color: var(--main-txt-color);
-}
-
-.navbar{
-  background: var(--secondary);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-}
-
-.nav-ul {
-  list-style: none;
+.svg-preview {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
 }
 
-/* error, ready */
-
-.is-error {
-  color: red;
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+  border-radius: 16px;
+  padding: 20px 40px 10px 40px; 
+  border: 4px solid var(--border-color);
+  box-shadow: var(--form-box-sh);
 }
 
-.is-ready {
-  color: green;
+ .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.btn-calc {
+  font-family: var(--f-headline-btn);
+  font-weight: 700;
+  font-size: var(--medium-txt-f-size);
+  text-transform: uppercase;
+  border: 3px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.1s ease;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 4px 4px 0px #000000;
+  background-color: var(--title-button-color);
+color:  var(--main-txt-color);
+
+  text-transform: uppercase;
+
+  text-align: center;
+  margin-bottom: 25px;
+  /* Gruby czarny obrys tekstu i przesunięty cień */
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     3px  3px 0px #000;
+}
+
+.btn-calc:hover {
+background-color: var(--button-hover-color);
+color:  var(--main-txt-color);
+}
+
+
+/* input */
+
+/* 1. Usunięcie domyślnych strzałek przeglądarki */
+/* Dla Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Dla Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* 2. Dedykowane stylowanie samego inputa */
+.lasagna-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 8px 4px;
+  outline: none;
+  width: 100%;
+  
+  /* Zmiana koloru migającego kursora */
+  caret-color: #ffffff; 
+}
+
+.lasagna-input:focus {
+  border-bottom-color: #ffe600; /* Akcent np. przy aktywnym polu */
+}
+
+/* Stylowanie głównego pola select */
+select.lasagna-select {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  font-size: 1rem;
+  padding: 8px 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Stylowanie rozwijanej listy opcji (rozwiniętego menu) */
+select.lasagna-select option {
+  background-color: #b81d24; /* Twoja czerwona barwa tła lub ciemny kolor, np. #1a1a1a */
+  color: #ffffff;            /* Wyraźny, biały tekst */
+  padding: 10px;
+}
+
+/* .svg-preview {
+  padding: 0 50px;
+} */
+
+/* .footer-conteiner {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
